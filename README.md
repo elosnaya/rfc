@@ -90,6 +90,10 @@ This gem implements the RFC generation algorithm with homoclave for natural pers
 - **INFOMEX folio:** `0610100135506`
 - **Document:** [Algoritmo para generar el RFC con homoclave para personas físicas y morales (PDF)](https://www.mariovaldez.net/files/IFAI%200610100135506%20065%20Algoritmo%20para%20generar%20el%20RFC%20con%20homoclave%20para%20personas%20fisicas%20y%20morales.pdf)
 
+## Acknowledgments
+
+This Ruby implementation is also inspired by [rfc-facil](https://github.com/josketres/rfc-facil), the original Java library by [josketres](https://github.com/josketres), and the Ruby port [rfc_facil](https://github.com/acrogenesis/rfc_facil) by [acrogenesis](https://github.com/acrogenesis).
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at [elosnaya/rfc](https://github.com/elosnaya/rfc).

@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email = ["luisosnet@gmail.com"]
 
   spec.summary = "Generate Mexican RFC codes for natural persons (personas físicas)."
-  spec.description = "Ruby library that generates RFC tax identifiers for Mexican natural persons using the SAT algorithm documented by the IFAI (INFOMEX folio 0610100135506). Supports name normalization, homoclave, and verification digit calculation."
+  spec.description = "Ruby library that generates RFC tax identifiers for Mexican natural persons using the SAT algorithm documented by the IFAI (INFOMEX folio 0610100135506). Inspired by rfc-facil (josketres) and rfc_facil (acrogenesis). Supports name normalization, homoclave, and verification digit calculation."
   spec.homepage = "https://github.com/elosnaya/rfc"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"

@@ -9,12 +9,13 @@ Gem::Specification.new do |spec|
   spec.email = ["luisosnet@gmail.com"]
 
   spec.summary = "Generate Mexican RFC codes for natural persons (personas físicas)."
-  spec.description = "Ruby library that generates RFC tax identifiers for Mexican natural persons using the SAT algorithm. Supports name normalization, homoclave, and verification digit calculation."
+  spec.description = "Ruby library that generates RFC tax identifiers for Mexican natural persons using the SAT algorithm documented by the IFAI (INFOMEX folio 0610100135506). Supports name normalization, homoclave, and verification digit calculation."
   spec.homepage = "https://github.com/elosnaya/rfc"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/elosnaya/rfc"
+  spec.metadata["documentation_uri"] = "https://www.mariovaldez.net/files/IFAI%200610100135506%20065%20Algoritmo%20para%20generar%20el%20RFC%20con%20homoclave%20para%20personas%20fisicas%20y%20morales.pdf"
 
   gemspec = File.basename(__FILE__)
   spec.files = IO.popen(%w[git ls-files -z], chdir: __dir__, err: IO::NULL) do |ls|

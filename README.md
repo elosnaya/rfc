@@ -39,6 +39,32 @@ rfc = Rfc::Generator.new.for_natural_person(
 puts rfc # => "PEGJ900315PE9"
 ```
 
+To inspect individual RFC parts, use the calculators directly:
+
+```ruby
+name = "Juan Carlos"
+first_last_name = "Perez"
+second_last_name = "Garcia"
+
+ten_digits = Rfc::NaturalTenDigitsCodeCalculator.new(
+  name: name,
+  first_last_name: first_last_name,
+  second_last_name: second_last_name,
+  day: 15, month: 3, year: 1990
+).calculate
+# => "PEGJ900315"
+
+homoclave = Rfc::HomoclaveCalculator.new(
+  name: name,
+  first_last_name: first_last_name,
+  second_last_name: second_last_name
+).calculate
+# => "PE"
+
+verification_digit = Rfc::VerificationDigitCalculator.new("#{ten_digits}#{homoclave}").calculate
+# => "9"
+```
+
 You can also pass the birth date as separate values:
 
 ```ruby

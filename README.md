@@ -9,7 +9,7 @@ Legal entity support (personas morales) is planned for a future release.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "rfc", git: "https://github.com/your-username/rfc.git"
+gem "rfc", git: "https://github.com/elosnaya/rfc.git"
 ```
 
 Or install locally after cloning:
@@ -79,7 +79,7 @@ Rfc::Generator.new.for_natural_person(
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [your-username/rfc](https://github.com/your-username/rfc).
+Bug reports and pull requests are welcome on GitHub at [elosnaya/rfc](https://github.com/elosnaya/rfc).
 
 ## License
 

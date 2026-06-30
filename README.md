@@ -1,38 +1,85 @@
-# Rfc
+# rfc
 
-TODO: Delete this and the text below, and describe your gem
+Ruby gem to generate Mexican **RFC** tax identifiers for **natural persons** (personas físicas), following the [SAT](https://www.sat.gob.mx/) algorithm.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rfc`. To experiment with that code, run `bin/console` for an interactive prompt.
+Legal entity support (personas morales) is planned for a future release.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add this line to your application's Gemfile:
 
-Install the gem and add to the application's Gemfile by executing:
-
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+```ruby
+gem "rfc", git: "https://github.com/elosnaya/rfc.git"
 ```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+Or install locally after cloning:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle exec rake install
 ```
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require "rfc"
+
+rfc = Rfc::Generator.new.generate(
+  name: "Luis Alberto",
+  first_last_name: "Osnaya",
+  second_last_name: "Balderas",
+  date_of_birth: "21/07/1986"
+)
+
+puts rfc # => "OABL8607213H6"
+```
+
+You can also pass the birth date as separate values:
+
+```ruby
+Rfc::Generator.new.generate(
+  name: "Luis Alberto",
+  first_last_name: "Osnaya",
+  second_last_name: "Balderas",
+  day: 21,
+  month: 7,
+  year: 1986
+)
+```
+
+`date_of_birth` accepts `DD/MM/YYYY` format or any string parseable by Ruby's `Date`.
+
+### Errors
+
+```ruby
+begin
+  Rfc::Generator.new.generate(name: "Ana", first_last_name: "Lopez", second_last_name: "Garcia")
+rescue Rfc::Generator::InvalidDateError => e
+  puts e.message # => "Date information missing"
+end
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```bash
+bin/setup          # install dependencies
+bundle exec rspec  # run tests
+bin/console        # interactive console
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Example in the console:
+
+```ruby
+Rfc::Generator.new.generate(
+  name: "Luis Alberto",
+  first_last_name: "Osnaya",
+  second_last_name: "Balderas",
+  date_of_birth: "21/07/1986"
+)
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rfc.
+Bug reports and pull requests are welcome on GitHub at [elosnaya/rfc](https://github.com/elosnaya/rfc).
 
 ## License
 

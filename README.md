@@ -1,6 +1,6 @@
 # sat_rfc
 
-Ruby gem to generate Mexican **RFC** tax identifiers for **natural persons** (personas físicas), following the [SAT](https://www.sat.gob.mx/) algorithm.
+Ruby gem to generate Mexican **RFC** tax identifiers for **natural persons** (personas físicas), following the SAT algorithm documented by the IFAI (Instituto Federal de Acceso a la Información).
 
 Legal entity support (personas morales) is planned for a future release.
 
@@ -82,6 +82,13 @@ Rfc::Generator.new.for_natural_person(
   date_of_birth: "15/03/1990"
 )
 ```
+
+## Algorithm reference
+
+This gem implements the RFC generation algorithm with homoclave for natural persons and legal entities, based on official documentation obtained through the IFAI.
+
+- **INFOMEX folio:** `0610100135506`
+- **Document:** [Algoritmo para generar el RFC con homoclave para personas físicas y morales (PDF)](https://www.mariovaldez.net/files/IFAI%200610100135506%20065%20Algoritmo%20para%20generar%20el%20RFC%20con%20homoclave%20para%20personas%20fisicas%20y%20morales.pdf)
 
 ## Contributing
 

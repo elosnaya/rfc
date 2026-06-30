@@ -28,6 +28,17 @@ RSpec.describe Rfc::Generator do
       expect(rfc).to eq("PEGJ900315PE9")
     end
 
+    it "strips JOSE prefix from the given name" do
+      rfc = generator.for_natural_person(
+        name: "Jose Antonio",
+        first_last_name: "Perez",
+        second_last_name: "Luna",
+        date_of_birth: "01/05/1988"
+      )
+
+      expect(rfc).to eq("PELA880501UC9")
+    end
+
     it "raises InvalidDateError when date information is missing" do
       expect do
         generator.for_natural_person(

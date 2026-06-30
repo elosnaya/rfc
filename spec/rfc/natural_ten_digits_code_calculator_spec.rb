@@ -28,7 +28,7 @@ RSpec.describe Rfc::NaturalTenDigitsCodeCalculator do
       expect(calculator.calculate).to eq("BUEX900101")
     end
 
-    it "uses the given name after SAT discardable term normalization" do
+    it "strips MARIA prefix from the given name before discardable terms" do
       calculator = described_class.new(
         name: "Maria Fernanda",
         first_last_name: "Lopez",
@@ -38,7 +38,20 @@ RSpec.describe Rfc::NaturalTenDigitsCodeCalculator do
         year: 1985
       )
 
-      expect(calculator.calculate).to eq("LOGM850315")
+      expect(calculator.calculate).to eq("LOGF850315")
+    end
+
+    it "strips JOSE prefix from the given name before discardable terms" do
+      calculator = described_class.new(
+        name: "Jose Antonio",
+        first_last_name: "Perez",
+        second_last_name: "Luna",
+        day: 1,
+        month: 5,
+        year: 1988
+      )
+
+      expect(calculator.calculate).to eq("PELA880501")
     end
 
     it "handles an empty second last name" do

@@ -1,4 +1,4 @@
-# rfc
+# sat_rfc
 
 Ruby gem to generate Mexican **RFC** tax identifiers for **natural persons** (personas físicas), following the [SAT](https://www.sat.gob.mx/) algorithm.
 
@@ -9,10 +9,16 @@ Legal entity support (personas morales) is planned for a future release.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "rfc", git: "https://github.com/elosnaya/rfc.git"
+gem "sat_rfc"
 ```
 
-Or install locally after cloning:
+Or install from the repository:
+
+```ruby
+gem "sat_rfc", git: "https://github.com/elosnaya/rfc.git"
+```
+
+Local development install:
 
 ```bash
 bundle exec rake install
@@ -21,7 +27,7 @@ bundle exec rake install
 ## Usage
 
 ```ruby
-require "rfc"
+require "sat_rfc"
 
 rfc = Rfc::Generator.new.for_natural_person(
   name: "Juan Carlos",

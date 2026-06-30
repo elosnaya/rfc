@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in rfc.gemspec
+# Specify your gem's dependencies in sat_rfc.gemspec
 gemspec
 
 gem "irb"

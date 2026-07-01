@@ -11,6 +11,7 @@ require_relative "rfc/discardable_terms/legal_entity"
 require_relative "rfc/verification_digit_calculator"
 require_relative "rfc/homoclave_calculator"
 require_relative "rfc/natural_ten_digits_code_calculator"
+require_relative "rfc/legal_entity_ten_digits_code_calculator"
 
 module Rfc
   class Error < StandardError; end

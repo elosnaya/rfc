@@ -8,10 +8,12 @@ module Rfc
 
     def initialize(
       natural_ten_digits_calculator: NaturalTenDigitsCodeCalculator,
+      legal_entity_ten_digits_calculator: LegalEntityTenDigitsCodeCalculator,
       homoclave_calculator: HomoclaveCalculator,
       verification_digit_calculator: VerificationDigitCalculator
     )
       @natural_ten_digits_calculator = natural_ten_digits_calculator
+      @legal_entity_ten_digits_calculator = legal_entity_ten_digits_calculator
       @homoclave_calculator = homoclave_calculator
       @verification_digit_calculator = verification_digit_calculator
     end
@@ -41,6 +43,29 @@ module Rfc
         first_last_name: first_last_name,
         second_last_name: second_last_name
       ).calculate
+
+      build_rfc(ten_digits_code, homoclave)
+    rescue ArgumentError => e
+      raise InvalidDateError, "Invalid date parameters: #{e.message}"
+    end
+
+    def for_legal_entity(
+      legal_name:,
+      day: nil,
+      month: nil,
+      year: nil,
+      constitution_date: nil
+    )
+      normalized_day, normalized_month, normalized_year = normalize_date(day, month, year, constitution_date)
+
+      ten_digits_code = @legal_entity_ten_digits_calculator.new(
+        legal_name: legal_name,
+        day: normalized_day,
+        month: normalized_month,
+        year: normalized_year
+      ).calculate
+
+      homoclave = @homoclave_calculator.new(legal_name: legal_name).calculate
 
       build_rfc(ten_digits_code, homoclave)
     rescue ArgumentError => e

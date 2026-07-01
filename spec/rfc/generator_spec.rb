@@ -60,4 +60,41 @@ RSpec.describe Rfc::Generator do
       end.to raise_error(Rfc::Generator::InvalidDateError, /Invalid date format/)
     end
   end
+
+  describe "#for_legal_entity" do
+    it "returns the full RFC for a legal entity using constitution_date" do
+      rfc = generator.for_legal_entity(
+        legal_name: "Mu Networks S.A.P.I. de C.V.",
+        constitution_date: "10/07/2014"
+      )
+
+      expect(rfc).to eq("MNP1407108U7")
+    end
+
+    it "returns the full RFC when day, month, and year are provided" do
+      rfc = generator.for_legal_entity(
+        legal_name: "Mu Networks S.A.P.I. de C.V.",
+        day: 10,
+        month: 7,
+        year: 2014
+      )
+
+      expect(rfc).to eq("MNP1407108U7")
+    end
+
+    it "raises InvalidDateError when date information is missing" do
+      expect do
+        generator.for_legal_entity(legal_name: "Mu Networks S.A.P.I. de C.V.")
+      end.to raise_error(Rfc::Generator::InvalidDateError, "Date information missing")
+    end
+
+    it "raises InvalidDateError when constitution_date has an invalid format" do
+      expect do
+        generator.for_legal_entity(
+          legal_name: "Mu Networks S.A.P.I. de C.V.",
+          constitution_date: "not-a-date"
+        )
+      end.to raise_error(Rfc::Generator::InvalidDateError, /Invalid date format/)
+    end
+  end
 end
